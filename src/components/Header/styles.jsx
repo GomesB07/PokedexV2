@@ -1,21 +1,35 @@
 import styled from "styled-components"
-import { Link } from "react-router-dom"
 
 export const Container = styled.div`
+  background: ${(props) => (props.pagePokemon ? props.color : "#121216")};
   width: 100vw;
   height: 10vh;
-  background-color: #000;
   border-bottom: 2px solid #f4f4f4;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 0 0 50px;
+  padding: 0 50px;
+  position: fixed;
+  z-index: 2;
 
   .logo {
     width: min-content;
     h1 {
       color: #fff;
     }
+  }
+
+  .open-menu-icon {
+    display: none;
+    @media (max-width: 750px) {
+      display: ${(props) => (props.openMenu ? "none" : "flex")};
+    }
+  }
+
+  @media (max-width: 750px) {
+    padding: ${(props) => (props.openMenu ? "0" : "0 50px")};
+    flex-direction: ${(props) => props.openMenu && "column"};
+    align-items: ${(props) => props.openMenu && "flex-end"};
   }
 `
 
@@ -27,13 +41,38 @@ export const Nav = styled.ul`
   align-items: center;
   justify-content: flex-end;
   gap: 50px;
+
+  .close-menu-icon {
+    display: none;
+    @media (max-width: 750px) {
+      display: ${(props) => (props.openMenu ? "none" : "flex")};
+    }
+  }
+
+  @media (max-width: 750px) {
+    width: 100%;
+    height: 100vh;
+    gap: 20px;
+    display: ${(props) => (props.openMenu ? "flex" : "none")};
+    flex-direction: column;
+    justify-content: flex-start;
+    position: fixed;
+    background-color: blue;
+    z-index: 10;
+    padding: 50px 0;
+  }
 `
 
-export const NavLink = styled(Link)`
+export const NavLink = styled.p`
   text-decoration: none;
   color: #fff;
   display: flex;
   animation: 0.5s linear;
+  cursor: pointer;
+
+  @media (max-width: 750px) {
+    font-size: 30px;
+  }
 `
 
 export const SearchDiv = styled.div`
@@ -43,48 +82,19 @@ export const SearchDiv = styled.div`
   align-items: center;
   justify-content: flex-start;
 
-  transition: 0.5s ease-out;
-
-  form {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    display: flex;
-    opacity: ${(props) => (props.searchView ? "1" : "0")};
-
-    transition: 0.2s linear;
-
-    .input-search {
-      display: flex;
-      border: none;
-      height: 55%;
-      width: 70%;
-      padding-left: 15px;
-      border-radius: 5px;
-      z-index: 10;
-      outline: none;
-    }
-
-    .input-button {
-      width: 80px;
-      height: 55%;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+  @media (max-width: 750px) {
+    height: auto;
   }
 `
 
 export const SearchDivIcon = styled.div`
-  width: 25px;
-  height: 25px;
   padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  @media (max-width: 750px) {
+    font-size: 25px;
+  }
 `

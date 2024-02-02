@@ -1,26 +1,71 @@
 import React, { useEffect, useState } from "react"
 
-import { Container } from "./styles"
+import { useSearchParams } from "react-router-dom"
 
-import { allPokemons } from "../../services/getData"
+import { getAllPokemonsUrl } from "../../services/getData"
+
+import { CardPokemon, Error } from "../../components"
+
+import { Container, DivButtons } from "./styles"
 
 const AllPokemons = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [pokemons, setPokemons] = useState([])
+  const [pokemonNumber, setPokemonNumber] = useState()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [isError, setIsError] = useState()
+  const page = searchParams.get("page")
 
   useEffect(() => {
-    const results = async () => {
-      const result = await allPokemons()
-      setPokemons(result.data.results)
+    const fetchData = async () => {
+      try {
+        const data = await getAllPokemonsUrl({
+          limitPokemonPage: 51,
+          pokemonNumber,
+        })
+        setPokemons(data)
+        setIsLoading(true)
+      } catch (error) {
+        console.error(error)
+        setIsError(true)
+      }
+    }
+    fetchData()
+  }, [pokemonNumber])
+
+  useEffect(() => {
+    const currentPage = parseInt(page, 10) || 1
+    setPokemonNumber((currentPage - 1) * 51)
+  }, [page])
+
+  const handleChangePage = (value) => {
+    const currentPage = parseInt(page, 10) || 1
+
+    if (value) {
+      setSearchParams({ page: currentPage + 1 })
+    } else {
+      setSearchParams({ page: currentPage - 1 || 1 })
     }
 
-    results()
-  }, [])
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
-  console.log(pokemons)
-
-  return (
+  return isError ? (
+    <Error />
+  ) : (
     <Container>
-      {pokemons && pokemons.map((poke) => <p key={poke.id}>{poke.name}</p>)}
+      <CardPokemon pokemons={pokemons} isLoading={isLoading} />
+
+      {isLoading && (
+        <DivButtons>
+          <button onClick={() => handleChangePage(false)} disabled={!isLoading}>
+            Anterior
+          </button>
+          <button onClick={() => handleChangePage(true)} disabled={!isLoading}>
+            Próximo
+          </button>
+        </DivButtons>
+      )}
     </Container>
   )
 }

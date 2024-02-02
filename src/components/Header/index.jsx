@@ -1,55 +1,55 @@
-import React, { useState } from "react"
-import { FaSearch } from "react-icons/fa"
-import { MdOutlineClose } from "react-icons/md"
+import React, { useContext, useState } from "react"
 
-import { useForm } from "react-hook-form"
+import MenuIcon from "@mui/icons-material/Menu"
+import CloseIcon from "@mui/icons-material/Close"
+import SearchIcon from "@mui/icons-material/Search"
 
-import { Container, Nav, NavLink, SearchDiv, SearchDivIcon } from "./styles"
+import { useLocation, useNavigate } from "react-router-dom"
 
-const Header = () => {
-  const [searchView, setSearchView] = useState(false)
+import { Container, Nav, NavLink, SearchDiv } from "./styles"
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
+import { PokemonColorContext } from "../../context/HeaderContext"
 
-  const onSubmit = (data) => console.log(data)
+export const Header = () => {
+  const [openMenu, setOpenMenu] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const { pokemonColor } = useContext(PokemonColorContext)
 
   return (
-    <Container>
+    <Container
+      openMenu={openMenu}
+      pagePokemon={!!location.pathname.includes("/pokemon/")}
+      color={pokemonColor}
+    >
       <div className="logo">
         <h1>Pokedex</h1>
       </div>
 
-      <Nav>
-        <NavLink to="/pokemons">Pokémons</NavLink>
+      <MenuIcon
+        className="open-menu-icon"
+        style={{ color: "#fff", marginRight: "20px" }}
+        onClick={() => setOpenMenu(true)}
+      />
 
-        <SearchDiv searchView={searchView}>
-          <SearchDivIcon onClick={() => setSearchView(!searchView)}>
-            {searchView ? (
-              <MdOutlineClose style={{ color: "#fff" }} />
-            ) : (
-              <FaSearch style={{ color: "#fff" }} />
-            )}
-          </SearchDivIcon>
+      <Nav openMenu={openMenu}>
+        <CloseIcon
+          className="close-menu-icon"
+          style={{ color: "#fff", fontSize: "25px" }}
+          onClick={() => setOpenMenu(false)}
+        />
+        <NavLink onClick={() => navigate("/")}>Home</NavLink>
+        <NavLink onClick={() => navigate("/pokemons")}>Pokémons</NavLink>
+        <NavLink onClick={() => navigate("/elements")}>Elementos</NavLink>
 
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              className="input-search"
-              placeholder="Pesquise um Pokémon"
-              {...register("pokemonInput", { required: true })}
-            />
-            {errors.exampleRequired && (
-              <span>É necessário pesquisar um Pokémon</span>
-            )}
-            <input className="input-button" type="submit" />
-          </form>
+        <SearchDiv>
+          <SearchIcon
+            style={{ color: "#fff" }}
+            onClick={() => navigate("/search")}
+          />
         </SearchDiv>
       </Nav>
     </Container>
   )
 }
-
-export default Header

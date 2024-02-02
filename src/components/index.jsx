@@ -1,0 +1,5 @@
+export * from "./CardPokemon"
+export * from "./Error"
+export * from "./Header"
+export * from "./Skeleton"
+export * from "./TypesPokemon"
