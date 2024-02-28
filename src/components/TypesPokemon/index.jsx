@@ -1,9 +1,9 @@
 import React from "react"
-
-import { Container, Type } from "./styles"
 import { useNavigate } from "react-router-dom"
-import { Skelet } from "../index"
+
 import ColorStyles from "../../styles/ColorStyles"
+import { Skelet } from "../index"
+import { Container, Type } from "./styles"
 
 export const TypesPokemon = ({ types, pagElements, isLoading }) => {
   const navigate = useNavigate()

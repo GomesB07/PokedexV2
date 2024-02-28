@@ -17,18 +17,19 @@ export const NameAndId = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
+  flex-direction: column;
 
   .div-name {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
     width: 100%;
 
     p {
       font-size: 30px;
       color: #fff;
       font-weight: 700;
-      margin-left: 40px;
     }
 
     h3 {
@@ -36,15 +37,13 @@ export const NameAndId = styled.div`
       color: #fff;
       text-transform: capitalize;
       font-weight: 800;
-      margin: auto;
     }
   }
 
   .div-types-pokemon {
     display: flex;
-    padding: 0 20px;
-    position: absolute;
-    right: 0;
+    align-items: center;
+    justify-content: space-around;
   }
 
   @media (max-width: 750px) {
@@ -69,7 +68,6 @@ export const NameAndId = styled.div`
 
   @media (max-width: 390px) {
     .div-name {
-      background-color: red;
       width: 100%;
       padding: 0;
     }
@@ -192,43 +190,11 @@ export const SectionEvolution = styled.div`
         font-weight: 800;
       }
     }
-
-    .pokemons-evolution-div {
-      width: 100%;
-      height: min-content;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-
-      .pokemon-div {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        gap: 10px;
-        cursor: pointer;
-
-        img {
-          width: 100px;
-        }
-
-        p {
-          color: #fff;
-          font-weight: 500;
-          text-transform: capitalize;
-        }
-      }
-    }
   }
 
   @media (max-width: 325px) {
     .evolution-div {
       margin-top: 100px;
-
-      img {
-        width: 50px !important;
-      }
     }
   }
 
@@ -239,9 +205,44 @@ export const SectionEvolution = styled.div`
       width: 95%;
       padding: 10px 0;
     }
+  }
+`
 
-    .pokemons-evolution-div {
-      width: 100%;
+export const PokemonEvolutions = styled.div`
+  width: 100%;
+  height: min-content;
+  display: ${(props) => (props.evolutionListLength ? "flex" : "grid")};
+  grid-template-columns: repeat(6, 1fr);
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .pokemon-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+
+    img {
+      width: 100px;
     }
+
+    p {
+      color: #fff;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+  }
+
+  @media (max-width: 325px) {
+    img {
+      width: 50px !important;
+    }
+  }
+
+  @media (max-width: 750px) {
+    width: 100%;
   }
 `

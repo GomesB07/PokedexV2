@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react"
 
-import { Container, DivInput } from "./styles"
-import { getAllPokemonsUrl } from "../../services/getData"
-
 import { CardPokemon } from "../../components"
+import { getAllPokemonsUrl } from "../../services/getData"
+import { Container, DivInput } from "./styles"
 
 const Search = () => {
   const [pokemons, setPokemons] = useState([])

@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react"
-
 import { useSearchParams } from "react-router-dom"
 
-import { getAllPokemonsUrl } from "../../services/getData"
-
 import { CardPokemon, Error } from "../../components"
-
+import { getAllPokemonsUrl } from "../../services/getData"
 import { Container, DivButtons } from "./styles"
 
 const AllPokemons = () => {

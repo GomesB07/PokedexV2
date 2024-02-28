@@ -14,11 +14,24 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "eslint-plugin-import-helpers"
     ],
     "rules": {
         "react/react-in-jsx-scope": "off",
         "no-unused-vars": "warn",
-        "react/prop-types": 0
+        "react/prop-types": 0,
+        "import-helpers/order-imports": [
+            "warn",
+            {
+                "newlinesBetween": "always",
+                "groups": [
+                    "module",
+                    "/^@shared/",
+                    ["parent", "sibling", "index"]
+                ],
+                "alphabetize": { "order": "asc", "ignoreCase": true }
+            }
+        ]
     }
 }

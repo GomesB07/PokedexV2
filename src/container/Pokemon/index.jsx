@@ -1,10 +1,20 @@
-import React, { useContext, useEffect, useState } from "react"
-
-import { getEvolutions, getPokemon, getSpecies } from "../../services/getData"
-
-import ProgressBar from "@ramonak/react-progress-bar"
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow"
+import StarIcon from "@mui/icons-material/Star"
+import { grey, yellow } from "@mui/material/colors"
+import ProgressBar from "@ramonak/react-progress-bar"
+import React, { useContext, useEffect, useState } from "react"
+import { useNavigate, useParams } from "react-router-dom"
 
+import { TypesPokemon, Error } from "../../components"
+import { ColorPokemonContext } from "../../Hooks/ColorContext"
+import { FavoriteContext } from "../../Hooks/FavoriteContext"
+import {
+  getEvolutions,
+  getPokemon,
+  getSpecies,
+  getVarietiesPokemon,
+} from "../../services/getData"
+import ColorStyles, { ColorsGraph } from "../../styles/ColorStyles"
 import {
   Container,
   NameAndId,
@@ -12,13 +22,8 @@ import {
   PokeImgDiv,
   PokeInfoDiv,
   SectionEvolution,
+  PokemonEvolutions,
 } from "./styles"
-import { useNavigate, useParams } from "react-router-dom"
-import { TypesPokemon, Error } from "../../components"
-
-import ColorStyles, { ColorsGraph } from "../../styles/ColorStyles"
-
-import { PokemonColorContext } from "../../context/HeaderContext"
 
 const Pokemon = () => {
   const [pokemon, setPokemon] = useState()
@@ -31,24 +36,31 @@ const Pokemon = () => {
 
   const { pokemonName } = useParams()
 
-  const { setPokemonColor, pokemonColor } = useContext(PokemonColorContext)
+  const { setPokemonColor, pokemonColor } = useContext(ColorPokemonContext)
+  const { addLocalStorage, ReviewLocalList, favoritePokemon } =
+    useContext(FavoriteContext)
 
   useEffect(() => {
     const fetchPokemon = async () => {
       try {
         const dataPokemon = await getPokemon(pokemonName)
         setPokemon(dataPokemon)
-        setPokemonColor(ColorStyles(pokemon.types[0].type.name))
+        setPokemonColor(ColorStyles(dataPokemon.types[0].type.name))
+        ReviewLocalList(pokemonName)
       } catch (err) {
         console.error(err)
-        setIsError(false)
+        setIsError(true)
       }
     }
 
     fetchPokemon()
-  }, [pokemon])
+  }, [pokemonName])
 
   useEffect(() => {
+    if (!pokemon) {
+      return
+    }
+
     const fetchSpecies = async () => {
       try {
         const data = await getSpecies(pokemon.species.url)
@@ -67,6 +79,10 @@ const Pokemon = () => {
   }, [pokemon])
 
   useEffect(() => {
+    if (!evolutions) {
+      return
+    }
+
     try {
       const namesPokemonsEvolutions = []
       if (evolutions.chain.evolves_to.length === 1) {
@@ -91,11 +107,23 @@ const Pokemon = () => {
         const response = await Promise.all(data)
         setPokemonsEvolutions(response)
       }
+
+      const fetchVarieties = async () => {
+        const data = await getVarietiesPokemon(pokemon.id)
+        console.log(data)
+      }
+
       fetchEvolutions()
+      fetchVarieties()
     } catch (error) {
       console.error(error)
     }
   }, [evolutions])
+
+  const fetchPokemonLocalStorage = (pokemon) => {
+    addLocalStorage(pokemon)
+    ReviewLocalList(pokemonName)
+  }
 
   return isError ? (
     <Error />
@@ -106,6 +134,12 @@ const Pokemon = () => {
           <div className="div-name">
             <p>{pokemon.id}</p>
             <h3>{pokemon.name}</h3>
+            <StarIcon
+              sx={{ color: favoritePokemon ? yellow[600] : grey[600] }}
+              style={{ opacity: 0.8, cursor: "pointer" }}
+              fontSize="large"
+              onClick={() => fetchPokemonLocalStorage(pokemon)}
+            />
           </div>
           <div className="div-types-pokemon">
             <TypesPokemon types={pokemon.types} isLoading={isLoading} />
@@ -150,7 +184,9 @@ const Pokemon = () => {
                 <p>Evolução</p>
               </div>
 
-              <div className="pokemons-evolution-div">
+              <PokemonEvolutions
+                evolutionListLength={pokemonsEvolutions.length <= 3}
+              >
                 {pokemonsEvolutions.map((pokemon, index) => (
                   <>
                     <div
@@ -180,7 +216,7 @@ const Pokemon = () => {
                     )}
                   </>
                 ))}
-              </div>
+              </PokemonEvolutions>
             </div>
           </SectionEvolution>
         )}

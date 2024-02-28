@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
-import { getElements } from "../../services/getData"
 
-import { TypesPokemon, Error } from "../../components"
+import { TypesPokemon, Error, Skelet } from "../../components"
+import { getElements } from "../../services/getData"
 
 const Elements = () => {
   const [elements, setElements] = useState([])
@@ -29,8 +29,10 @@ const Elements = () => {
 
   return isError ? (
     <Error />
-  ) : (
+  ) : isLoading ? (
     <TypesPokemon types={elements} pagElements isLoading={isLoading} />
+  ) : (
+    <Skelet />
   )
 }
 

@@ -8,14 +8,14 @@ import { useLocation, useNavigate } from "react-router-dom"
 
 import { Container, Nav, NavLink, SearchDiv } from "./styles"
 
-import { PokemonColorContext } from "../../context/HeaderContext"
+import { ColorPokemonContext } from "../../Hooks/ColorContext"
 
 export const Header = () => {
   const [openMenu, setOpenMenu] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
 
-  const { pokemonColor } = useContext(PokemonColorContext)
+  const { pokemonColor } = useContext(ColorPokemonContext)
 
   return (
     <Container

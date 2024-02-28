@@ -1,11 +1,9 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 
-import { Container, Pokemon } from "./styles"
-
-import { Skelet } from "../index"
-
 import ColorStyles from "../../styles/ColorStyles"
+import { Skelet } from "../index"
+import { Container, Pokemon } from "./styles"
 
 export const CardPokemon = ({ pokemons, isLoading }) => {
   const navigate = useNavigate()

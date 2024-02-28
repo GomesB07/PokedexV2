@@ -3,14 +3,14 @@ import ReactDOM from "react-dom/client"
 import Routes from "./routes/myRoutes"
 import GlobalStyles from "./styles/GlobalStyles"
 
-import PokemonProvider from "./context/HeaderContext"
+import AppProvider from "./Hooks"
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
   <React.StrictMode>
-    <PokemonProvider>
+    <AppProvider>
       <Routes />
       <GlobalStyles />
-    </PokemonProvider>
+    </AppProvider>
   </React.StrictMode>,
 )
