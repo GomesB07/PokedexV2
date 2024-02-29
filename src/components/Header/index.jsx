@@ -1,14 +1,11 @@
-import React, { useContext, useState } from "react"
-
-import MenuIcon from "@mui/icons-material/Menu"
 import CloseIcon from "@mui/icons-material/Close"
+import MenuIcon from "@mui/icons-material/Menu"
 import SearchIcon from "@mui/icons-material/Search"
-
+import React, { useContext, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 
-import { Container, Nav, NavLink, SearchDiv } from "./styles"
-
 import { ColorPokemonContext } from "../../Hooks/ColorContext"
+import { Container, Nav, NavLink, SearchDiv } from "./styles"
 
 export const Header = () => {
   const [openMenu, setOpenMenu] = useState(false)

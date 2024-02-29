@@ -10,7 +10,7 @@ const AllPokemons = () => {
   const [pokemons, setPokemons] = useState([])
   const [pokemonNumber, setPokemonNumber] = useState()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [isError, setIsError] = useState()
+  const [isError, setIsError] = useState(false)
   const page = searchParams.get("page")
 
   useEffect(() => {

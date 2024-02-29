@@ -1,13 +1,13 @@
 import React from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
-import DefaultLayout from "../layout/DefaultLayout"
-import Home from "../container/Home"
 import AllPokemons from "../container/AllPokemons"
-import Pokemon from "../container/Pokemon"
-import Elements from "../container/Elements"
 import Element from "../container/Element"
+import Elements from "../container/Elements"
+import Home from "../container/Home"
+import Pokemon from "../container/Pokemon"
 import Search from "../container/Search"
+import DefaultLayout from "../layout/DefaultLayout"
 
 const myRoutes = () => {
   return (

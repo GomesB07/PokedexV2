@@ -1,9 +1,7 @@
 import React from "react"
-
-import snorlax from "../../img/snorlax.gif"
-
 import { useNavigate } from "react-router-dom"
 
+import snorlax from "../../img/snorlax.gif"
 import { Container, GoHome } from "./styles"
 
 export const Error = () => {

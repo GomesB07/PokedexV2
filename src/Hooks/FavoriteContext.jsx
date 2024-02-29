@@ -33,11 +33,14 @@ const FavoriteProvider = ({ children }) => {
   const ReviewLocalList = (pokemonName) => {
     const list = localStorage.getItem("pokedex:pokemons")
     const objectPokemons = JSON.parse(list)
-    const namePokemons = objectPokemons.map((pokemon) => pokemon.name)
 
-    return namePokemons.some((poke) => poke === pokemonName)
-      ? setFavoritePokemon(true)
-      : setFavoritePokemon(false)
+    if (objectPokemons !== null) {
+      const namePokemons = objectPokemons.map((pokemon) => pokemon.name)
+
+      return namePokemons.some((poke) => poke === pokemonName)
+        ? setFavoritePokemon(true)
+        : setFavoritePokemon(false)
+    }
   }
 
   return (

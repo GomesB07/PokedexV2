@@ -31,6 +31,7 @@ const Pokemon = () => {
   const [isError, setIsError] = useState(false)
   const [evolutions, setEvolutions] = useState()
   const [pokemonsEvolutions, setPokemonsEvolutions] = useState([])
+  const [pokemonsVarieties, setPokemonsVarieties] = useState([])
 
   const navigate = useNavigate()
 
@@ -47,8 +48,8 @@ const Pokemon = () => {
         setPokemon(dataPokemon)
         setPokemonColor(ColorStyles(dataPokemon.types[0].type.name))
         ReviewLocalList(pokemonName)
-      } catch (err) {
-        console.error(err)
+      } catch (error) {
+        console.error(error)
         setIsError(true)
       }
     }
@@ -73,6 +74,7 @@ const Pokemon = () => {
         setIsLoading(true)
       } catch (error) {
         console.error(error)
+        setIsError(true)
       }
     }
     fetchSpecies()
@@ -108,17 +110,25 @@ const Pokemon = () => {
         setPokemonsEvolutions(response)
       }
 
-      const fetchVarieties = async () => {
-        const data = await getVarietiesPokemon(pokemon.id)
-        console.log(data)
-      }
-
       fetchEvolutions()
-      fetchVarieties()
     } catch (error) {
       console.error(error)
+      setIsError(true)
     }
   }, [evolutions])
+
+  useEffect(() => {
+    const fetchVarieties = async () => {
+      try {
+        const data = await getVarietiesPokemon(pokemon.id)
+        setPokemonsVarieties(data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    fetchVarieties(pokemon)
+  }, [pokemon, evolutions])
 
   const fetchPokemonLocalStorage = (pokemon) => {
     addLocalStorage(pokemon)
@@ -220,6 +230,11 @@ const Pokemon = () => {
             </div>
           </SectionEvolution>
         )}
+
+        <div style={{ backgroundColor: "green" }}>
+          {pokemonsVarieties &&
+            pokemonsVarieties.map((poke) => <p key={poke.id}>{poke.name}</p>)}
+        </div>
       </Container>
     )
   )

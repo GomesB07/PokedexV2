@@ -40,5 +40,9 @@ export const getEvolutions = async (url) => {
 
 export const getVarietiesPokemon = async (idPokemon) => {
   const data = await api.get(`pokemon-species/${idPokemon}`)
-  return data
+  const pokemonVarieties = data.data.varieties
+  const urlPokemons = pokemonVarieties.map((pokemon) => pokemon.pokemon.url)
+  const fetchPokemon = await getPokemons(urlPokemons)
+  const dataPokemons = fetchPokemon.map((pokemon) => pokemon.data)
+  return dataPokemons
 }

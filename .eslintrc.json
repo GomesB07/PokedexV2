@@ -32,6 +32,12 @@
                 ],
                 "alphabetize": { "order": "asc", "ignoreCase": true }
             }
-        ]
+        ],
+        "prettier/prettier": [
+            "error",
+            {
+              "endOfLine": "auto"
+            }
+          ]
     }
 }
