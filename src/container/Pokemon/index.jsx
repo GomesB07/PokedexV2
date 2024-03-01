@@ -22,7 +22,7 @@ import {
   PokeImgDiv,
   PokeInfoDiv,
   SectionEvolution,
-  PokemonEvolutions,
+  PokemonEvolutionsOrVarieties,
 } from "./styles"
 
 const Pokemon = () => {
@@ -194,7 +194,7 @@ const Pokemon = () => {
                 <p>Evolução</p>
               </div>
 
-              <PokemonEvolutions
+              <PokemonEvolutionsOrVarieties
                 evolutionListLength={pokemonsEvolutions.length <= 3}
               >
                 {pokemonsEvolutions.map((pokemon, index) => (
@@ -226,15 +226,48 @@ const Pokemon = () => {
                     )}
                   </>
                 ))}
-              </PokemonEvolutions>
+              </PokemonEvolutionsOrVarieties>
             </div>
           </SectionEvolution>
         )}
 
-        <div style={{ backgroundColor: "green" }}>
-          {pokemonsVarieties &&
-            pokemonsVarieties.map((poke) => <p key={poke.id}>{poke.name}</p>)}
-        </div>
+        <SectionEvolution style={{ marginTop: "50px" }}>
+          <div className="evolution-div">
+            <div className="evolution-title-div">
+              <p>Variedades</p>
+            </div>
+            <PokemonEvolutionsOrVarieties
+              style={{
+                display: `${pokemonsVarieties.length < 3 && "flex"}`,
+                justifyContent: `${pokemonsVarieties.length < 3 && "space-around"}`,
+              }}
+            >
+              {pokemonsVarieties &&
+                pokemonsVarieties.map((pokemon) => (
+                  <>
+                    <div
+                      className="pokemon-div"
+                      key={pokemon.id}
+                      onClick={() =>
+                        navigate(`/pokemon/${pokemon.name}`, {
+                          replace: true,
+                        })
+                      }
+                    >
+                      <img
+                        src={
+                          pokemon.sprites.other.home.front_default ||
+                          pokemon.sprites.front_default ||
+                          pokemon.sprites.other.showdown.front_default
+                        }
+                      />
+                      <p>{pokemon.name}</p>
+                    </div>
+                  </>
+                ))}
+            </PokemonEvolutionsOrVarieties>
+          </div>
+        </SectionEvolution>
       </Container>
     )
   )

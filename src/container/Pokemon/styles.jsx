@@ -208,7 +208,7 @@ export const SectionEvolution = styled.div`
   }
 `
 
-export const PokemonEvolutions = styled.div`
+export const PokemonEvolutionsOrVarieties = styled.div`
   width: 100%;
   height: min-content;
   display: ${(props) => (props.evolutionListLength ? "flex" : "grid")};
