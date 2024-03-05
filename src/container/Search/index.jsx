@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 
 import { CardPokemon } from "../../components"
 import { getAllPokemonsUrl } from "../../services/getData"
-import { Container, DivInput } from "./styles"
+import { Container, DivInput, LoadingPokemons } from "./styles"
 
 const Search = () => {
   const [pokemons, setPokemons] = useState([])
@@ -25,8 +25,6 @@ const Search = () => {
   }, [])
 
   const handleInput = (e) => {
-    console.log(e.target.value)
-
     if (e.target.value.length === 0) {
       setPokemonsFiltered([])
     } else {
@@ -39,22 +37,21 @@ const Search = () => {
 
   return (
     <Container>
-      {pokemons && (
-        <>
-          <DivInput>
-            <input
-              type="text"
-              placeholder="Digite o nome do Pokemon..."
-              onChange={handleInput}
-            />
-          </DivInput>
+      <DivInput filtered={pokemonsFiltered.length !== 0}>
+        <input
+          type="text"
+          placeholder="Digite o nome do Pokemon..."
+          onChange={handleInput}
+          disabled={pokemons.length === 0}
+        />
+      </DivInput>
 
-          <div className="sub-container">
-            {pokemonsFiltered && (
-              <CardPokemon pokemons={pokemonsFiltered} isLoading={true} />
-            )}
-          </div>
-        </>
+      {pokemons.length === 0 ? (
+        <LoadingPokemons>
+          <p>Aguarde, carregando pokemons!</p>
+        </LoadingPokemons>
+      ) : (
+        <CardPokemon pokemons={pokemonsFiltered} isLoading={true} />
       )}
     </Container>
   )

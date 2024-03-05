@@ -23,8 +23,9 @@ export const NameAndId = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
+    padding: 0 50px;
 
     p {
       font-size: 30px;
@@ -159,14 +160,14 @@ export const PokeInfoDiv = styled.div`
     }
   }
 `
-export const SectionEvolution = styled.div`
+export const SectionEvolutionOrVarieties = styled.div`
   width: 100%;
   height: min-content;
   display: flex;
   align-items: center;
   justify-content: center;
 
-  .evolution-div {
+  .container-title {
     width: 80%;
     height: min-content;
     display: flex;
@@ -179,7 +180,7 @@ export const SectionEvolution = styled.div`
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.18);
 
-    .evolution-title-div {
+    .title-div {
       width: 100%;
       height: 5vh;
       text-align: center;
@@ -193,7 +194,7 @@ export const SectionEvolution = styled.div`
   }
 
   @media (max-width: 325px) {
-    .evolution-div {
+    .container-title {
       margin-top: 100px;
     }
   }
@@ -201,7 +202,7 @@ export const SectionEvolution = styled.div`
   @media (max-width: 750px) {
     margin-top: 30px;
 
-    .evolution-div {
+    .container-title {
       width: 95%;
       padding: 10px 0;
     }

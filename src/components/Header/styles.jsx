@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  background: ${(props) => (props.pagePokemon ? props.color : "#121216")};
+  background: ${(props) => (props.pagePokemon ? props.color : "#121212")};
   width: 100vw;
   height: 10vh;
   border-bottom: 2px solid #f4f4f4;
@@ -76,11 +76,12 @@ export const NavLink = styled.p`
 `
 
 export const SearchDiv = styled.div`
-  width: ${(props) => (props.searchView ? "80%" : "10%")};
-  height: 100%;
+  width: auto;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  cursor: pointer;
 
   @media (max-width: 750px) {
     height: auto;
@@ -92,7 +93,6 @@ export const SearchDivIcon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 
   @media (max-width: 750px) {
     font-size: 25px;

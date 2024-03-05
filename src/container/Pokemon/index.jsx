@@ -21,7 +21,7 @@ import {
   SectionInfos,
   PokeImgDiv,
   PokeInfoDiv,
-  SectionEvolution,
+  SectionEvolutionOrVarieties,
   PokemonEvolutionsOrVarieties,
 } from "./styles"
 
@@ -90,8 +90,8 @@ const Pokemon = () => {
       if (evolutions.chain.evolves_to.length === 1) {
         namesPokemonsEvolutions.push(
           evolutions.chain.species.name,
-          evolutions.chain.evolves_to[0].species.name,
-          evolutions.chain.evolves_to[0].evolves_to[0].species.name,
+          evolutions.chain.evolves_to[0]?.species.name,
+          evolutions.chain.evolves_to[0].evolves_to[0]?.species.name,
         )
       } else {
         namesPokemonsEvolutions.push(evolutions.chain.species.name)
@@ -142,7 +142,7 @@ const Pokemon = () => {
       <Container color={pokemonColor}>
         <NameAndId>
           <div className="div-name">
-            <p>{pokemon.id}</p>
+            <p>#{pokemon.id}</p>
             <h3>{pokemon.name}</h3>
             <StarIcon
               sx={{ color: favoritePokemon ? yellow[600] : grey[600] }}
@@ -188,9 +188,9 @@ const Pokemon = () => {
         </SectionInfos>
 
         {pokemonsEvolutions && (
-          <SectionEvolution>
-            <div className="evolution-div">
-              <div className="evolution-title-div">
+          <SectionEvolutionOrVarieties>
+            <div className="container-title">
+              <div className="title-div">
                 <p>Evolução</p>
               </div>
 
@@ -228,13 +228,13 @@ const Pokemon = () => {
                 ))}
               </PokemonEvolutionsOrVarieties>
             </div>
-          </SectionEvolution>
+          </SectionEvolutionOrVarieties>
         )}
 
-        <SectionEvolution style={{ marginTop: "50px" }}>
-          <div className="evolution-div">
-            <div className="evolution-title-div">
-              <p>Variedades</p>
+        <SectionEvolutionOrVarieties style={{ marginTop: "50px" }}>
+          <div className="container-title">
+            <div className="title-div">
+              <p>Outras Versões</p>
             </div>
             <PokemonEvolutionsOrVarieties
               style={{
@@ -267,7 +267,7 @@ const Pokemon = () => {
                 ))}
             </PokemonEvolutionsOrVarieties>
           </div>
-        </SectionEvolution>
+        </SectionEvolutionOrVarieties>
       </Container>
     )
   )

@@ -2,9 +2,9 @@ import styled from "styled-components"
 
 export const Container = styled.div`
   width: ${(props) => (props.pagElements ? "100vw" : "min-content")};
-  height: ${(props) => (props.pagElements ? "min-content" : "10vh")};
-  min-height: ${(props) => (props.pagElements ? "90vh" : "0")};
-  background-color: ${(props) => (props.pagElements ? "#121216" : "")};
+  height: ${(props) => (props.pagElements ? "auto" : "10vh")};
+  min-height: ${(props) => (props.pagElements ? "100vh" : "0")};
+  background-color: ${(props) => (props.pagElements ? "#121212" : "")};
   display: flex;
   align-items: center;
   justify-content: ${(props) => (props.pagElements ? "center" : "flex-end")};

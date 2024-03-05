@@ -1,32 +1,33 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  width: 100vw;
-  height: min-content;
-  min-height: 90vh;
-  background-color: rebeccapurple;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
-  padding-top: 10vh;
-
-  .sub-container {
-    width: 100%;
-    height: 100%;
-    background-color: rebeccapurple;
-  }
+  background-color: #121212;
 `
+
 export const DivInput = styled.div`
   width: 100%;
-  height: min-content;
+  height: 10vh;
   display: flex;
   justify-content: center;
+  padding-top: 15vh;
+  padding-bottom: ${(props) => (props.filtered ? "50px" : "")};
 
   input {
     width: 80%;
     height: 50px;
     outline: none;
     padding: 0 20px;
+  }
+`
+
+export const LoadingPokemons = styled.div`
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    color: #fff;
   }
 `
