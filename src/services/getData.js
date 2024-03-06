@@ -13,7 +13,7 @@ export const getAllPokemonsUrl = async ({
 }
 
 export const getPokemons = async (pokemons) => {
-  const data = await pokemons.map((pokemon) => api.get(pokemon))
+  const data = await pokemons.map((pokemons) => api.get(`pokemon/${pokemons}`))
   const promise = await Promise.all(data)
   return promise
 }

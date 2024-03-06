@@ -11,6 +11,7 @@ import { FavoriteContext } from "../../Hooks/FavoriteContext"
 import {
   getEvolutions,
   getPokemon,
+  getPokemons,
   getSpecies,
   getVarietiesPokemon,
 } from "../../services/getData"
@@ -103,11 +104,16 @@ const Pokemon = () => {
       }
 
       const fetchEvolutions = async () => {
-        const data = await namesPokemonsEvolutions.map((namePoke) =>
-          getPokemon(namePoke),
+        // const data = await namesPokemonsEvolutions.filter((namePoke) =>
+        //   getPokemon(namePoke),
+        // )
+        const filterNames = namesPokemonsEvolutions.filter(
+          (namePoke) => namePoke !== undefined,
         )
-        const response = await Promise.all(data)
-        setPokemonsEvolutions(response)
+        const data = await getPokemons(filterNames)
+        console.log(data, filterNames)
+
+        setPokemonsEvolutions(data.data)
       }
 
       fetchEvolutions()
