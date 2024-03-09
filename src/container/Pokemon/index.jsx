@@ -104,16 +104,11 @@ const Pokemon = () => {
       }
 
       const fetchEvolutions = async () => {
-        // const data = await namesPokemonsEvolutions.filter((namePoke) =>
-        //   getPokemon(namePoke),
-        // )
         const filterNames = namesPokemonsEvolutions.filter(
           (namePoke) => namePoke !== undefined,
         )
         const data = await getPokemons(filterNames)
-        console.log(data, filterNames)
-
-        setPokemonsEvolutions(data.data)
+        setPokemonsEvolutions(data)
       }
 
       fetchEvolutions()
@@ -124,17 +119,17 @@ const Pokemon = () => {
   }, [evolutions])
 
   useEffect(() => {
-    const fetchVarieties = async () => {
-      try {
-        const data = await getVarietiesPokemon(pokemon.id)
-        setPokemonsVarieties(data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
+    try {
+      const fetchVarieties = async (pokemon) => {
+        const data = await getVarietiesPokemon(pokemon)
 
-    fetchVarieties(pokemon)
-  }, [pokemon, evolutions])
+        setPokemonsVarieties(data)
+      }
+      fetchVarieties(pokemon)
+    } catch (error) {
+      console.log(error)
+    }
+  }, [pokemon, pokemonsEvolutions])
 
   const fetchPokemonLocalStorage = (pokemon) => {
     addLocalStorage(pokemon)
@@ -193,87 +188,84 @@ const Pokemon = () => {
           </PokeInfoDiv>
         </SectionInfos>
 
-        {pokemonsEvolutions && (
-          <SectionEvolutionOrVarieties>
-            <div className="container-title">
-              <div className="title-div">
-                <p>Evolução</p>
+        {pokemonsEvolutions && pokemonsEvolutions.length > 0 && (
+          <>
+            <SectionEvolutionOrVarieties>
+              <div className="container-title">
+                <div className="title-div">
+                  <p>Evolução</p>
+                </div>
+
+                <PokemonEvolutionsOrVarieties>
+                  {pokemonsEvolutions.map((pokemon, index) => (
+                    <>
+                      <div
+                        className="pokemon-div"
+                        key={pokemon.id}
+                        onClick={() =>
+                          navigate(`/pokemon/${pokemon.name}`, {
+                            replace: true,
+                          })
+                        }
+                      >
+                        <img
+                          src={
+                            pokemon.sprites.other.home.front_default ||
+                            pokemon.sprites.front_default ||
+                            pokemon.sprites.other.showdown.front_default
+                          }
+                        />
+                        <p>{pokemon.name}</p>
+                      </div>
+                      {index < pokemonsEvolutions.length - 1 && (
+                        <DoubleArrowIcon
+                          style={{
+                            color: ColorsGraph(pokemon.types[0].type.name),
+                          }}
+                        />
+                      )}
+                    </>
+                  ))}
+                </PokemonEvolutionsOrVarieties>
               </div>
+            </SectionEvolutionOrVarieties>
 
-              <PokemonEvolutionsOrVarieties
-                evolutionListLength={pokemonsEvolutions.length <= 3}
-              >
-                {pokemonsEvolutions.map((pokemon, index) => (
-                  <>
-                    <div
-                      className="pokemon-div"
-                      key={pokemon.id}
-                      onClick={() =>
-                        navigate(`/pokemon/${pokemon.name}`, {
-                          replace: true,
-                        })
-                      }
-                    >
-                      <img
-                        src={
-                          pokemon.sprites.other.home.front_default ||
-                          pokemon.sprites.front_default ||
-                          pokemon.sprites.other.showdown.front_default
-                        }
-                      />
-                      <p>{pokemon.name}</p>
-                    </div>
-                    {index < pokemonsEvolutions.length - 1 && (
-                      <DoubleArrowIcon
-                        style={{
-                          color: ColorsGraph(pokemon.types[0].type.name),
-                        }}
-                      />
-                    )}
-                  </>
-                ))}
-              </PokemonEvolutionsOrVarieties>
-            </div>
-          </SectionEvolutionOrVarieties>
+            <SectionEvolutionOrVarieties style={{ marginTop: "50px" }}>
+              <div className="container-title">
+                <div className="title-div">
+                  <p>Outras Versões</p>
+                </div>
+                <PokemonEvolutionsOrVarieties
+                  displayEvolutions={pokemonsEvolutions.length > 3}
+                >
+                  {pokemonsVarieties &&
+                    pokemonsVarieties.map((pokemon) => (
+                      <>
+                        <div
+                          className="pokemon-div"
+                          key={pokemon.id}
+                          onClick={() =>
+                            navigate(`/pokemon/${pokemon.name}`, {
+                              replace: true,
+                            })
+                          }
+                        >
+                          <img
+                            src={
+                              pokemon.sprites.other.home.front_default ||
+                              pokemon.sprites.front_default ||
+                              pokemon.sprites.other.showdown.front_default
+                            }
+                          />
+                          <p>{pokemon.name}</p>
+                        </div>
+                      </>
+                    ))}
+                </PokemonEvolutionsOrVarieties>
+              </div>
+            </SectionEvolutionOrVarieties>
+          </>
         )}
-
-        <SectionEvolutionOrVarieties style={{ marginTop: "50px" }}>
-          <div className="container-title">
-            <div className="title-div">
-              <p>Outras Versões</p>
-            </div>
-            <PokemonEvolutionsOrVarieties
-              style={{
-                display: `${pokemonsVarieties.length < 3 && "flex"}`,
-                justifyContent: `${pokemonsVarieties.length < 3 && "space-around"}`,
-              }}
-            >
-              {pokemonsVarieties &&
-                pokemonsVarieties.map((pokemon) => (
-                  <>
-                    <div
-                      className="pokemon-div"
-                      key={pokemon.id}
-                      onClick={() =>
-                        navigate(`/pokemon/${pokemon.name}`, {
-                          replace: true,
-                        })
-                      }
-                    >
-                      <img
-                        src={
-                          pokemon.sprites.other.home.front_default ||
-                          pokemon.sprites.front_default ||
-                          pokemon.sprites.other.showdown.front_default
-                        }
-                      />
-                      <p>{pokemon.name}</p>
-                    </div>
-                  </>
-                ))}
-            </PokemonEvolutionsOrVarieties>
-          </div>
-        </SectionEvolutionOrVarieties>
       </Container>
     )
   )

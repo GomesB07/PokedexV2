@@ -212,7 +212,7 @@ export const SectionEvolutionOrVarieties = styled.div`
 export const PokemonEvolutionsOrVarieties = styled.div`
   width: 100%;
   height: min-content;
-  display: ${(props) => (props.evolutionListLength ? "flex" : "grid")};
+  display: ${(props) => (props.displayEvolutions ? "grid" : "flex")};
   grid-template-columns: repeat(6, 1fr);
   flex-direction: row;
   justify-content: space-between;
