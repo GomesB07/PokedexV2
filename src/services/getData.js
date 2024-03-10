@@ -26,7 +26,11 @@ export const getPokemon = async (pokemonName) => {
 
 export const getElements = async (element) => {
   const { data } = await api.get(`type/${element}`)
-  console.log(data)
+  const filterObjectData = {
+    damage: data.damage_relations,
+    pokemon: data.pokemon,
+  }
+  return filterObjectData
 }
 
 export const getSpecies = async (url) => {
