@@ -50,9 +50,10 @@ export const NameAndId = styled.div`
   @media (max-width: 750px) {
     padding: 0;
     flex-direction: column;
+    margin-top: 20px;
 
     .div-name {
-      width: 75%;
+      width: 100%;
       justify-content: space-around;
       padding: 0;
 

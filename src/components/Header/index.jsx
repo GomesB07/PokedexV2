@@ -14,6 +14,11 @@ export const Header = () => {
 
   const { pokemonColor } = useContext(ColorPokemonContext)
 
+  const navigateLink = (link) => {
+    navigate(link)
+    setOpenMenu(false)
+  }
+
   return (
     <Container
       openMenu={openMenu}
@@ -31,21 +36,25 @@ export const Header = () => {
       />
 
       <Nav openMenu={openMenu}>
-        <CloseIcon
-          className="close-menu-icon"
-          style={{ color: "#fff", fontSize: "25px" }}
-          onClick={() => setOpenMenu(false)}
-        />
-        <NavLink onClick={() => navigate("/")}>Home</NavLink>
-        <NavLink onClick={() => navigate("/pokemons")}>Pokémons</NavLink>
-        <NavLink onClick={() => navigate("/elements")}>Elementos</NavLink>
+        <NavLink onClick={() => navigateLink("/")}>Home</NavLink>
+        <NavLink onClick={() => navigateLink("/pokemons")}>Pokémons</NavLink>
+        <NavLink onClick={() => navigateLink("/elements")}>Elementos</NavLink>
 
         <SearchDiv>
           <SearchIcon
             style={{ color: "#fff" }}
-            onClick={() => navigate("/search")}
+            onClick={() => navigateLink("/search")}
           />
         </SearchDiv>
+
+        <CloseIcon
+          onClick={() => setOpenMenu(false)}
+          style={{
+            color: "#fff",
+            marginTop: 20,
+            display: openMenu ? "flex" : "none",
+          }}
+        />
       </Nav>
     </Container>
   )

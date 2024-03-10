@@ -21,15 +21,16 @@ export const Container = styled.div`
 
   .open-menu-icon {
     display: none;
-    @media (max-width: 750px) {
-      display: ${(props) => (props.openMenu ? "none" : "flex")};
-    }
   }
 
   @media (max-width: 750px) {
     padding: ${(props) => (props.openMenu ? "0" : "0 50px")};
     flex-direction: ${(props) => props.openMenu && "column"};
     align-items: ${(props) => props.openMenu && "flex-end"};
+
+    .open-menu-icon {
+      display: ${(props) => (props.openMenu ? "none" : "flex")};
+    }
   }
 `
 
@@ -42,23 +43,15 @@ export const Nav = styled.ul`
   justify-content: flex-end;
   gap: 50px;
 
-  .close-menu-icon {
-    display: none;
-    @media (max-width: 750px) {
-      display: ${(props) => (props.openMenu ? "none" : "flex")};
-    }
-  }
-
   @media (max-width: 750px) {
     width: 100%;
     height: 100vh;
-    gap: 20px;
+    gap: 25px;
     display: ${(props) => (props.openMenu ? "flex" : "none")};
     flex-direction: column;
     justify-content: flex-start;
     position: fixed;
-    background-color: blue;
-    z-index: 10;
+    background-color: #121212;
     padding: 50px 0;
   }
 `

@@ -25,8 +25,8 @@ export const getPokemon = async (pokemonName) => {
 }
 
 export const getElements = async (element) => {
-  const data = await api.get(`type/${element}`)
-  return data
+  const { data } = await api.get(`type/${element}`)
+  console.log(data)
 }
 
 export const getSpecies = async (url) => {
@@ -41,7 +41,7 @@ export const getEvolutions = async (url) => {
 
 export const getVarietiesPokemon = async (pokemon) => {
   if (pokemon) {
-    const data = await api.get(`pokemon-species/${pokemon.id}`)
+    const data = await api.get(pokemon.species.url)
     const pokemonVarieties = data.data.varieties
     const urlPokemons = pokemonVarieties.map((pokemon) => pokemon.pokemon.url)
     const fetchPokemon = await urlPokemons.map((url) => api.get(url))

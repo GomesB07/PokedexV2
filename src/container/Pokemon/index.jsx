@@ -43,28 +43,26 @@ const Pokemon = () => {
     useContext(FavoriteContext)
 
   useEffect(() => {
-    const fetchPokemon = async () => {
-      try {
+    try {
+      const fetchPokemon = async () => {
         const dataPokemon = await getPokemon(pokemonName)
         setPokemon(dataPokemon)
         setPokemonColor(ColorStyles(dataPokemon.types[0].type.name))
         ReviewLocalList(pokemonName)
-      } catch (error) {
-        console.error(error)
-        setIsError(true)
       }
+      fetchPokemon()
+    } catch (error) {
+      console.error(error)
+      setIsError(true)
     }
-
-    fetchPokemon()
   }, [pokemonName])
 
   useEffect(() => {
     if (!pokemon) {
       return
     }
-
-    const fetchSpecies = async () => {
-      try {
+    try {
+      const fetchSpecies = async () => {
         const data = await getSpecies(pokemon.species.url)
 
         const dataEvolutions = await getEvolutions(
@@ -73,12 +71,12 @@ const Pokemon = () => {
         setEvolutions(dataEvolutions)
 
         setIsLoading(true)
-      } catch (error) {
-        console.error(error)
-        setIsError(true)
       }
+      fetchSpecies()
+    } catch (error) {
+      console.error(error)
+      setIsError(true)
     }
-    fetchSpecies()
   }, [pokemon])
 
   useEffect(() => {

@@ -8,7 +8,7 @@ import { Container, Type } from "./styles"
 export const TypesPokemon = ({ types, pagElements, isLoading }) => {
   const navigate = useNavigate()
 
-  const goPageElement = (type) => {
+  const goPageElement = async (type) => {
     navigate(`/element/${type.name || type.type.name}`)
   }
 
