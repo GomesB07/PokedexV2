@@ -10,22 +10,23 @@ const Element = () => {
   const [urlPokemons, setUrlPokemons] = useState([])
   const [pokemons, setPokemons] = useState([])
   const [isError, setIsError] = useState(false)
+  const [type, setType] = useState()
   const { element } = useParams()
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getElements(element)
-        console.log(data)
+    try {
+      const fetchData = async () => {
+        const { data } = await getElements(element)
+        setType(data)
         setUrlPokemons(data)
         setIsLoading(true)
-      } catch (err) {
-        console.error(err)
-        setIsError(true)
       }
-    }
 
-    fetchData()
+      fetchData()
+    } catch (err) {
+      console.error(err)
+      setIsError(true)
+    }
   }, [])
 
   // useEffect(() => {
@@ -43,7 +44,7 @@ const Element = () => {
         <Error />
       ) : (
         <div>
-          <TypesPokemon types={element} isLoading={isLoading} />
+          <TypesPokemon types={type} isLoading={isLoading} />
         </div>
       )}
     </Container>

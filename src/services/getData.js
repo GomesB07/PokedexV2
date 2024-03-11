@@ -25,12 +25,15 @@ export const getPokemon = async (pokemonName) => {
 }
 
 export const getElements = async (element) => {
-  const { data } = await api.get(`type/${element}`)
-  const filterObjectData = {
-    damage: data.damage_relations,
-    pokemon: data.pokemon,
+  if (typeof element === "number") {
+    const elementsArray = []
+    for (let i = 1; i < element; i++) {
+      const { data } = await api.get(`type/${i}`)
+      elementsArray.push(data)
+    }
+    return elementsArray
   }
-  return filterObjectData
+  return await api.get(`type/${element}`)
 }
 
 export const getSpecies = async (url) => {

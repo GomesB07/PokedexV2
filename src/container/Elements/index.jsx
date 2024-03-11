@@ -9,22 +9,18 @@ const Elements = () => {
   const [isError, setIsError] = useState(false)
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const elementsArray = []
-        for (let i = 1; i < 19; i++) {
-          const { data } = await getElements(i)
-          elementsArray.push(data)
-        }
-        setElements(elementsArray)
+    try {
+      const fetchData = async () => {
+        const data = await getElements(19)
+        setElements(data)
         setIsLoading(true)
-      } catch (err) {
-        console.error(err)
-        setIsError(true)
       }
-    }
 
-    fetchData()
+      fetchData()
+    } catch (err) {
+      console.error(err)
+      setIsError(true)
+    }
   }, [])
 
   return isError ? (
