@@ -23,7 +23,11 @@ export const DivButtons = styled.div`
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    background-color: yellow;
+    background-color: red;
     color: #7e7e7e;
+
+    &:hover {
+      background-color: #ff6565;
+    }
   }
 `

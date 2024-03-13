@@ -31,9 +31,10 @@ const Element = () => {
       {isError ? (
         <Error />
       ) : (
-        <div style={{ backgroundColor: "red", paddingTop: "100px" }}>
-          <TypesPokemon types={type} isLoading={isLoading} />
-          <h2>Alooo</h2>
+        <div className="sub-container">
+          <div className="div-element">
+            <TypesPokemon types={type} isLoading={isLoading} elementPage />
+          </div>
         </div>
       )}
     </Container>

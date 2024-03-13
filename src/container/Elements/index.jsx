@@ -26,7 +26,7 @@ const Elements = () => {
   return isError ? (
     <Error />
   ) : isLoading ? (
-    <TypesPokemon types={elements} pagElements isLoading={isLoading} />
+    <TypesPokemon types={elements} elementsPage isLoading={isLoading} />
   ) : (
     <Skelet />
   )

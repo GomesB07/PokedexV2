@@ -1,26 +1,34 @@
-import React, { useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import React from "react"
+import { useLocation, useNavigate } from "react-router-dom"
 
 import ColorStyles from "../../styles/ColorStyles"
 import { Skelet } from "../index"
 import { Container, Type } from "./styles"
 
-export const TypesPokemon = ({ types, pagElements, isLoading }) => {
+export const TypesPokemon = (props) => {
   const navigate = useNavigate()
+  const location = useLocation()
+
+  const types = props.types
+  const elementsPage = props.elementsPage
+  const elementPage = props.elementPage
+  const isLoading = props.isLoading
 
   const goPageElement = async (type) => {
+    if (location.pathname.includes(`/element/${type.name || type.type.name}`)) {
+      return
+    }
     navigate(`/element/${type.name || type.type.name}`)
   }
 
-  console.log(types)
-
   return (
-    <Container pagElements={pagElements}>
+    <Container elementsPage={elementsPage} elementPage={elementPage}>
       {types &&
         types.map((type) =>
           isLoading ? (
             <Type
-              pagElements={pagElements}
+              elementsPage={elementsPage}
+              elementPage={elementPage}
               key={type.name || type.type.name}
               color={ColorStyles(type.name || type.type.name)}
               onClick={() => goPageElement(type)}
@@ -29,8 +37,8 @@ export const TypesPokemon = ({ types, pagElements, isLoading }) => {
             </Type>
           ) : (
             <Skelet
-              height={pagElements ? "150px" : "80px"}
-              width={pagElements ? "250px" : "100px"}
+              height={elementsPage ? "150px" : "80px"}
+              width={elementsPage ? "250px" : "100px"}
               key={type.id}
             />
           ),

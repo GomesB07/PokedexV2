@@ -1,21 +1,23 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  width: ${(props) => (props.pagElements ? "100vw" : "min-content")};
-  height: ${(props) => (props.pagElements ? "auto" : "10vh")};
-  min-height: ${(props) => (props.pagElements ? "100vh" : "0")};
-  background-color: ${(props) => (props.pagElements ? "#121212" : "")};
+  width: ${(props) => (props.elementsPage ? "100vw" : "min-content")};
+  height: ${(props) => (props.elementsPage ? "auto" : "10vh")};
+  min-height: ${(props) => (props.elementsPage ? "100vh" : "0")};
+  background-color: ${(props) => (props.elementsPage ? "#121212" : "")};
   display: flex;
   align-items: center;
-  justify-content: ${(props) => (props.pagElements ? "center" : "flex-end")};
-  flex-flow: ${(props) => props.pagElements && "row wrap"};
+  justify-content: ${(props) => (props.elementsPage ? "center" : "flex-end")};
+  flex-flow: ${(props) => props.elementsPage && "row wrap"};
   gap: 20px;
-  padding-top: ${(props) => (props.pagElements ? "10vh" : "0")};
+  padding-top: ${(props) => (props.elementsPage ? "10vh" : "0")};
 `
 
 export const Type = styled.div`
-  width: ${(props) => (props.pagElements ? "250px" : "100px")};
-  height: ${(props) => (props.pagElements ? "80px" : "50px")};
+  width: ${(props) =>
+    props.elementsPage || props.elementPage ? "250px" : "100px"};
+  height: ${(props) =>
+    props.elementsPage || props.elementPage ? "80px" : "50px"};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,8 +35,10 @@ export const Type = styled.div`
   }
 
   @media (max-width: 750px) {
-    width: ${(props) => (props.pagElements ? "250px" : "80px")};
-    height: ${(props) => (props.pagElements ? "80px" : "30px")};
+    width: ${(props) =>
+      props.elementsPage || props.elementPage ? "250px" : "80px"};
+    height: ${(props) =>
+      props.elementsPage || props.elementPage ? "80px" : "30px"};
 
     h2 {
       font-size: 15px;
