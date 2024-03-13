@@ -14,7 +14,7 @@ export const TypesPokemon = (props) => {
   const elementPage = props.elementPage
   const isLoading = props.isLoading
 
-  const goPageElement = async (type) => {
+  const goPageElement = (type) => {
     if (location.pathname.includes(`/element/${type.name || type.type.name}`)) {
       return
     }
