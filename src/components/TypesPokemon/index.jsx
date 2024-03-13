@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
 import ColorStyles from "../../styles/ColorStyles"
@@ -11,6 +11,8 @@ export const TypesPokemon = ({ types, pagElements, isLoading }) => {
   const goPageElement = async (type) => {
     navigate(`/element/${type.name || type.type.name}`)
   }
+
+  console.log(types)
 
   return (
     <Container pagElements={pagElements}>

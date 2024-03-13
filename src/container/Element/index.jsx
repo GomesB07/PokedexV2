@@ -7,8 +7,6 @@ import { Container } from "./styles"
 
 const Element = () => {
   const [isLoading, setIsLoading] = useState(false)
-  const [urlPokemons, setUrlPokemons] = useState([])
-  const [pokemons, setPokemons] = useState([])
   const [isError, setIsError] = useState(false)
   const [type, setType] = useState()
   const { element } = useParams()
@@ -17,8 +15,7 @@ const Element = () => {
     try {
       const fetchData = async () => {
         const { data } = await getElements(element)
-        setType(data)
-        setUrlPokemons(data)
+        setType([data])
         setIsLoading(true)
       }
 
@@ -29,22 +26,14 @@ const Element = () => {
     }
   }, [])
 
-  // useEffect(() => {
-  //   const fetchPokemons = async () => {
-  //     const data = await getPokemons(urlPokemons)
-  //     setPokemons(data)
-  //   }
-
-  //   fetchPokemons()
-  // }, [urlPokemons])
-
   return (
     <Container>
       {isError ? (
         <Error />
       ) : (
-        <div>
+        <div style={{ backgroundColor: "red", paddingTop: "100px" }}>
           <TypesPokemon types={type} isLoading={isLoading} />
+          <h2>Alooo</h2>
         </div>
       )}
     </Container>
