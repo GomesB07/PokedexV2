@@ -26,16 +26,34 @@ const Element = () => {
     }
   }, [])
 
+  if (type) {
+    // console.log(type[0].damage_relations.map((damage) => console.log(damage)))
+    console.log(
+      type[0].damage_relations.no_damage_to.map((damage) =>
+        console.log(damage),
+      ),
+    )
+  }
+
   return (
     <Container>
       {isError ? (
         <Error />
       ) : (
-        <div className="sub-container">
-          <div className="div-element">
-            <TypesPokemon types={type} isLoading={isLoading} elementPage />
+        type && (
+          <div className="sub-container">
+            <div className="div-element">
+              <TypesPokemon types={type} isLoading={isLoading} elementPage />
+            </div>
+
+            <div className="div-damage">
+              {/* {type &&
+                type[0].damage_relations.map((damage) => (
+                  <p key={Math.random()}>{damage}</p>
+                ))} */}
+            </div>
           </div>
-        </div>
+        )
       )}
     </Container>
   )
