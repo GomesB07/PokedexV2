@@ -15,44 +15,60 @@ const Element = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    try {
-      const fetchData = async () => {
+    const fetchData = async () => {
+      try {
         const { data } = await getElements(element)
         setType([data])
         setIsLoading(true)
+      } catch (err) {
+        console.error(err)
+        setIsError(true)
       }
-
-      fetchData()
-    } catch (err) {
-      console.error(err)
-      setIsError(true)
     }
+
+    fetchData()
   }, [element])
 
   useEffect(() => {
     if (type) {
-      return setDamages({
-        double_damage_from: type[0].damage_relations.double_damage_from.map(
-          (damage) => damage.name,
-        ),
-        double_damage_to: type[0].damage_relations.double_damage_to.map(
-          (damage) => damage.name,
-        ),
-        half_damage_from: type[0].damage_relations.half_damage_from.map(
-          (damage) => damage.name,
-        ),
-        half_damage_to: type[0].damage_relations.half_damage_to.map(
-          (damage) => damage.name,
-        ),
-        no_damage_from: type[0].damage_relations.no_damage_from.map(
-          (damage) => damage.name,
-        ),
-        no_damage_to: type[0].damage_relations.no_damage_to.map(
-          (damage) => damage.name,
-        ),
-      })
+      const calculateDamages = () => {
+        const damageKeys = [
+          "double_damage_from",
+          "double_damage_to",
+          "half_damage_from",
+          "half_damage_to",
+          "no_damage_from",
+          "no_damage_to",
+        ]
+
+        const newDamages = {}
+        damageKeys.forEach((key) => {
+          newDamages[key] = type[0].damage_relations[key].map(
+            (damage) => damage.name,
+          )
+        })
+        setDamages(newDamages)
+      }
+
+      calculateDamages()
     }
   }, [type])
+
+  const renderDamageCategory = (title, category) => (
+    <div className="div-damage">
+      <h2>{title}</h2>
+      {damages[category] &&
+        damages[category].map((element) => (
+          <p
+            key={element}
+            onClick={() => navigate(`/element/${element}`)}
+            style={{ color: ColorStyles(element) }}
+          >
+            {element}
+          </p>
+        ))}
+    </div>
+  )
 
   return (
     <Container>
@@ -70,93 +86,17 @@ const Element = () => {
                 <h2>Damages</h2>
               </div>
 
-              {damages && (
-                <div className="div-damages">
-                  <div className="div-damage">
-                    <h2>Double Damage From:</h2>
-                    {damages.double_damage_from &&
-                      damages.double_damage_from.map((element) => (
-                        <p
-                          key={element}
-                          onClick={() => navigate(`/element/${element}`)}
-                          style={{ color: ColorStyles(element) }}
-                        >
-                          {element}
-                        </p>
-                      ))}
-                  </div>
-
-                  <div className="div-damage">
-                    <h2>Double Damage to:</h2>
-                    {damages.double_damage_to &&
-                      damages.double_damage_to.map((element) => (
-                        <p
-                          key={element}
-                          onClick={() => navigate(`/element/${element}`)}
-                          style={{ color: ColorStyles(element) }}
-                        >
-                          {element}
-                        </p>
-                      ))}
-                  </div>
-
-                  <div className="div-damage">
-                    <h2>Half Damage From:</h2>
-                    {damages.half_damage_from &&
-                      damages.half_damage_from.map((element) => (
-                        <p
-                          key={element}
-                          onClick={() => navigate(`/element/${element}`)}
-                          style={{ color: ColorStyles(element) }}
-                        >
-                          {element}
-                        </p>
-                      ))}
-                  </div>
-
-                  <div className="div-damage">
-                    <h2>Half Damage To:</h2>
-                    {damages.half_damage_to &&
-                      damages.half_damage_to.map((element) => (
-                        <p
-                          key={element}
-                          onClick={() => navigate(`/element/${element}`)}
-                          style={{ color: ColorStyles(element) }}
-                        >
-                          {element}
-                        </p>
-                      ))}
-                  </div>
-
-                  <div className="div-damage">
-                    <h2>No Damage From:</h2>
-                    {damages.no_damage_from &&
-                      damages.no_damage_from.map((element) => (
-                        <p
-                          key={element}
-                          onClick={() => navigate(`/element/${element}`)}
-                          style={{ color: ColorStyles(element) }}
-                        >
-                          {element}
-                        </p>
-                      ))}
-                  </div>
-
-                  <div className="div-damage">
-                    <h2>No Damage To:</h2>
-                    {damages.no_damage_to &&
-                      damages.no_damage_to.map((element) => (
-                        <p
-                          key={element}
-                          onClick={() => navigate(`/element/${element}`)}
-                          style={{ color: ColorStyles(element) }}
-                        >
-                          {element}
-                        </p>
-                      ))}
-                  </div>
-                </div>
-              )}
+              <div className="div-damages">
+                {renderDamageCategory(
+                  "Double Damage From:",
+                  "double_damage_from",
+                )}
+                {renderDamageCategory("Double Damage To:", "double_damage_to")}
+                {renderDamageCategory("Half Damage From:", "half_damage_from")}
+                {renderDamageCategory("Half Damage To:", "half_damage_to")}
+                {renderDamageCategory("No Damage From:", "no_damage_from")}
+                {renderDamageCategory("No Damage To:", "no_damage_to")}
+              </div>
             </DamagesContainer>
           </div>
         )
