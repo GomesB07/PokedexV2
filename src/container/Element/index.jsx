@@ -16,8 +16,6 @@ const Element = () => {
   const { element } = useParams()
   const navigate = useNavigate()
 
-  const colorElement = ColorStyles(element)
-
   useEffect(() => {
     try {
       const fetchData = async () => {
@@ -81,7 +79,7 @@ const Element = () => {
           <p
             key={element}
             onClick={() => navigate(`/element/${element}`)}
-            color={colorElement}
+            style={{ color: ColorStyles(element) }}
           >
             {element}
           </p>
@@ -100,12 +98,12 @@ const Element = () => {
               <TypesPokemon types={type} isLoading={isLoading} elementPage />
             </div>
 
-            <DamagesContainer>
+            <DamagesContainer color={ColorStyles(element)}>
               <div className="damages-title">
                 <h2>Damages</h2>
               </div>
 
-              <div className="div-damages" color={colorElement}>
+              <div className="div-damages">
                 {renderDamageCategory(
                   "Double Damage From:",
                   "double_damage_from",

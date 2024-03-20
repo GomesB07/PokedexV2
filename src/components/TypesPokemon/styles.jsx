@@ -22,15 +22,20 @@ export const Type = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background-color: ${(props) => props.color};
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  background-color: ${(props) =>
+    props.elementPage ? "transparent" : props.color};
+  box-shadow: 0 8px 32px 0
+    ${(props) => (props.elementPage ? props.color : "rgba(31, 38, 135, 0.37)")};
   backdrop-filter: blur(13.5px);
   -webkit-backdrop-filter: blur(13.5px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: ${(props) =>
+    props.elementPage
+      ? `2px solid ${props.color}`
+      : "1px solid rgba(255, 255, 255, 0.18)"};
 
   h2 {
-    color: #fff;
+    color: ${(props) => (props.elementPage ? props.color : "#fff")};
     text-transform: capitalize;
   }
 
