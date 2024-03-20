@@ -11,23 +11,42 @@ const Element = () => {
   const [isError, setIsError] = useState(false)
   const [damages, setDamages] = useState([])
   const [type, setType] = useState()
+  const [dataPokemons, setDataPokemons] = useState([])
+  const [pokemons, setPokemons] = useState([])
   const { element } = useParams()
   const navigate = useNavigate()
 
+  const colorElement = ColorStyles(element)
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
+    try {
+      const fetchData = async () => {
         const { data } = await getElements(element)
         setType([data])
+        setDataPokemons(data.pokemon)
         setIsLoading(true)
-      } catch (err) {
-        console.error(err)
-        setIsError(true)
       }
+      fetchData()
+    } catch (err) {
+      console.error(err)
+      setIsError(true)
     }
-
-    fetchData()
   }, [element])
+
+  useEffect(() => {
+    try {
+      const fetchPokemons = async () => {
+        const namePokemons = dataPokemons.map((pokemon) => pokemon.pokemon.name)
+
+        const data = await getPokemons(namePokemons)
+        console.log(data)
+      }
+
+      fetchPokemons()
+    } catch (error) {
+      console.error(error)
+    }
+  }, [dataPokemons])
 
   useEffect(() => {
     if (type) {
@@ -62,7 +81,7 @@ const Element = () => {
           <p
             key={element}
             onClick={() => navigate(`/element/${element}`)}
-            style={{ color: ColorStyles(element) }}
+            color={colorElement}
           >
             {element}
           </p>
@@ -86,7 +105,7 @@ const Element = () => {
                 <h2>Damages</h2>
               </div>
 
-              <div className="div-damages">
+              <div className="div-damages" color={colorElement}>
                 {renderDamageCategory(
                   "Double Damage From:",
                   "double_damage_from",
