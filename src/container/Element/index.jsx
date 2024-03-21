@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { CardPokemon, Error, TypesPokemon } from "../../components"
 import { getElements, getPokemons } from "../../services/getData"
 import ColorStyles from "../../styles/ColorStyles"
-import { Container, DamagesContainer } from "./styles"
+import { Container, DamagesContainer, ContainerPokemons } from "./styles"
 
 const Element = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -22,7 +22,6 @@ const Element = () => {
         const { data } = await getElements(element)
         setType([data])
         setDataPokemons(data.pokemon)
-        setIsLoading(true)
       }
       fetchData()
     } catch (err) {
@@ -35,9 +34,9 @@ const Element = () => {
     try {
       const fetchPokemons = async () => {
         const namePokemons = dataPokemons.map((pokemon) => pokemon.pokemon.name)
-
         const data = await getPokemons(namePokemons)
-        console.log(data)
+        setPokemons(data)
+        setIsLoading(true)
       }
 
       fetchPokemons()
@@ -115,6 +114,14 @@ const Element = () => {
                 {renderDamageCategory("No Damage To:", "no_damage_to")}
               </div>
             </DamagesContainer>
+
+            <ContainerPokemons>
+              <h2>Pokemons</h2>
+
+              {pokemons && (
+                <CardPokemon pokemons={pokemons} isLoading={isLoading} />
+              )}
+            </ContainerPokemons>
           </div>
         )
       )}

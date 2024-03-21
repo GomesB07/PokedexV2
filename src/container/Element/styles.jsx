@@ -80,3 +80,14 @@ export const DamagesContainer = styled.div`
     }
   }
 `
+
+export const ContainerPokemons = styled.div`
+  width: 100%;
+  height: 100%;
+
+  h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 25px;
+  }
+`

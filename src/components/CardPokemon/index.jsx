@@ -17,7 +17,7 @@ export const CardPokemon = ({ pokemons, isLoading }) => {
   return (
     <Container>
       {pokemons &&
-        pokemons.map(({ data: pokemon }) =>
+        pokemons.map((pokemon) =>
           isLoading ? (
             <Pokemon
               key={pokemon.id}

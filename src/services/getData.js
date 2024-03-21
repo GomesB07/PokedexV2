@@ -9,7 +9,8 @@ export const getAllPokemonsUrl = async ({
   } = await api.get(`pokemon?limit=${limitPokemonPage}&offset=${pokemonNumber}`)
   const urls = results.map((url) => api.get(url.url))
   const promise = await Promise.all(urls)
-  return promise
+  const getData = promise.map((data) => data.data)
+  return getData
 }
 
 export const getPokemons = async (pokemons) => {

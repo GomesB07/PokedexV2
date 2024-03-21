@@ -45,9 +45,9 @@ const Pokemon = () => {
   useEffect(() => {
     try {
       const fetchPokemon = async () => {
-        const dataPokemon = await getPokemon(pokemonName)
-        setPokemon(dataPokemon)
-        setPokemonColor(ColorStyles(dataPokemon.types[0].type.name))
+        const data = await getPokemon(pokemonName)
+        setPokemon(data)
+        setPokemonColor(ColorStyles(data.types[0].type.name))
         ReviewLocalList(pokemonName)
       }
       fetchPokemon()
