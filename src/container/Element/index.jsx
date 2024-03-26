@@ -73,16 +73,18 @@ const Element = () => {
   const renderDamageCategory = (title, category) => (
     <div className="div-damage">
       <h2>{title}</h2>
-      {damages[category] &&
-        damages[category].map((element) => (
-          <p
-            key={element}
-            onClick={() => navigate(`/element/${element}`)}
-            style={{ color: ColorStyles(element) }}
-          >
-            {element}
-          </p>
-        ))}
+      <div>
+        {damages[category] &&
+          damages[category].map((element) => (
+            <p
+              key={element}
+              onClick={() => navigate(`/element/${element}`)}
+              style={{ color: ColorStyles(element) }}
+            >
+              {element}
+            </p>
+          ))}
+      </div>
     </div>
   )
 

@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import AllPokemons from "../container/AllPokemons"
 import Element from "../container/Element"
 import Elements from "../container/Elements"
+import Favorites from "../container/Favorites"
 import Home from "../container/Home"
 import Pokemon from "../container/Pokemon"
 import Search from "../container/Search"
@@ -20,6 +21,7 @@ const myRoutes = () => {
           <Route path="/elements" element={<Elements />} />
           <Route path="/element/:element" element={<Element />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/favorites" element={<Favorites />} />
         </Route>
       </Routes>
     </Router>

@@ -69,15 +69,67 @@ export const DamagesContainer = styled.div`
         color: #fff;
       }
 
-      p {
-        cursor: pointer;
-        text-transform: capitalize;
+      div {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
 
-        &:hover {
-          text-decoration: underline;
+        p {
+          cursor: pointer;
+          text-transform: capitalize;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }
+  }
+
+  @media (max-width: 900px) {
+    .div-damages {
+      width: 100%;
+
+      .div-damage {
+        display: block;
+
+        div {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          padding: 5px 0 0 15px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 430px) {
+    width: 90%;
+
+    .div-damages {
+      width: 100%;
+
+      .div-damage {
+        display: block;
+
+        div {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          padding: 5px 0 0 15px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 360px) {
+    h2 {
+      font-size: 20px;
+    }
+  }
+
+  @media (max-width: 320px) {
+    width: 95%;
   }
 `
 
