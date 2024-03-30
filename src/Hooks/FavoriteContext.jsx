@@ -43,9 +43,19 @@ const FavoriteProvider = ({ children }) => {
     }
   }
 
+  const getLocalStorage = async () => {
+    const getPokemonsLocal = await localStorage.getItem("pokedex:pokemons")
+    return JSON.parse(getPokemonsLocal)
+  }
+
   return (
     <FavoriteContext.Provider
-      value={{ addLocalStorage, ReviewLocalList, favoritePokemon }}
+      value={{
+        addLocalStorage,
+        ReviewLocalList,
+        favoritePokemon,
+        getLocalStorage,
+      }}
     >
       {children}
     </FavoriteContext.Provider>

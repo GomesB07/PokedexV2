@@ -38,7 +38,8 @@ export const Header = () => {
       <Nav openMenu={openMenu}>
         <NavLink onClick={() => navigateLink("/")}>Home</NavLink>
         <NavLink onClick={() => navigateLink("/pokemons")}>Pokémons</NavLink>
-        <NavLink onClick={() => navigateLink("/elements")}>Elementos</NavLink>
+        <NavLink onClick={() => navigateLink("/elements")}>Elements</NavLink>
+        <NavLink onClick={() => navigateLink("favorites")}>Favorites</NavLink>
 
         <SearchDiv>
           <SearchIcon

@@ -234,7 +234,10 @@ const Pokemon = () => {
                   <p>Outras Versões</p>
                 </div>
                 <PokemonEvolutionsOrVarieties
-                  displayEvolutions={pokemonsEvolutions.length > 3}
+                  displayEvolutions={
+                    pokemonsEvolutions.length > 3 ||
+                    pokemonsVarieties.length > 3
+                  }
                 >
                   {pokemonsVarieties &&
                     pokemonsVarieties.map((pokemon) => (
