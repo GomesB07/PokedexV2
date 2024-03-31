@@ -9,7 +9,7 @@ export const Container = styled.div`
 
   .title {
     width: 100%;
-    height: auto;
+    height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,6 +22,14 @@ export const Container = styled.div`
 `
 
 export const FavoritesPokemons = styled.div`
-  width: 100%;
+  width: 100vw;
   height: auto;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    color: #fff;
+  }
 `

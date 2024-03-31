@@ -23,26 +23,28 @@ export const TypesPokemon = (props) => {
 
   return (
     <Container elementsPage={elementsPage} elementPage={elementPage}>
-      {types &&
-        types.map((type) =>
-          isLoading ? (
-            <Type
-              elementsPage={elementsPage}
-              elementPage={elementPage}
-              key={type.name || type.type.name}
-              color={ColorStyles(type.name || type.type.name)}
-              onClick={() => goPageElement(type)}
-            >
-              <h2>{type.name || type.type.name}</h2>
-            </Type>
-          ) : (
-            <Skelet
-              height={elementsPage ? "150px" : "80px"}
-              width={elementsPage ? "250px" : "100px"}
-              key={type.id}
-            />
-          ),
-        )}
+      <div className="sub-container">
+        {types &&
+          types.map((type) =>
+            isLoading ? (
+              <Type
+                elementsPage={elementsPage}
+                elementPage={elementPage}
+                key={type.name || type.type.name}
+                color={ColorStyles(type.name || type.type.name)}
+                onClick={() => goPageElement(type)}
+              >
+                <h2>{type.name || type.type.name}</h2>
+              </Type>
+            ) : (
+              <Skelet
+                height={elementsPage ? "150px" : "80px"}
+                width={elementsPage ? "250px" : "100px"}
+                key={type.id}
+              />
+            ),
+          )}
+      </div>
     </Container>
   )
 }

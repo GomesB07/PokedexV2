@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 
 import { CardPokemon } from "../../components"
+import { AllPokemonsContext } from "../../Hooks/AllPokemonsContext"
 import { getAllPokemonsUrl } from "../../services/getData"
 import { Container, DivInput, LoadingPokemons } from "./styles"
 
 const Search = () => {
   const [pokemons, setPokemons] = useState([])
   const [pokemonsFiltered, setPokemonsFiltered] = useState([])
+  const { allPokemons } = useContext(AllPokemonsContext)
 
   useEffect(() => {
     const getPoke = async () => {

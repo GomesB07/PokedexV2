@@ -1,23 +1,25 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 
-import snorlax from "../../img/snorlax.gif"
-import { Container, GoHome } from "./styles"
+import errorPokeball from "../../img/erro-pokeball.png"
+import { Container } from "./styles"
 
 export const Error = () => {
   const navigate = useNavigate()
   return (
     <Container>
-      <h1>Snorlax não conseguiu encontrar a requisição!</h1>
-      <img style={{ "mix-blend-mode": "multiply" }} src={snorlax} />
+      <img src={errorPokeball} />
+      <h1>Ops, não conseguimos capturar a requisição!</h1>
 
-      <button onClick={() => window.location.reload()}>Recarregar</button>
-      <GoHome
-        onClick={() => navigate("/")}
-        style={{ textDecoration: "none", marginTop: "10px" }}
-      >
-        Voltar para página inicial
-      </GoHome>
+      <div className="buttons">
+        <button onClick={() => window.location.reload()}>Recarregar</button>
+        <button
+          onClick={() => navigate("/")}
+          style={{ textDecoration: "none", marginTop: "10px" }}
+        >
+          Voltar para página inicial
+        </button>
+      </div>
     </Container>
   )
 }

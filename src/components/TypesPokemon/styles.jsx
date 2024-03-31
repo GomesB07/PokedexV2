@@ -5,17 +5,22 @@ export const Container = styled.div`
   height: ${(props) => (props.elementsPage ? "auto" : "10vh")};
   min-height: ${(props) => (props.elementsPage ? "100vh" : "0")};
   background-color: ${(props) => (props.elementsPage ? "#121212" : "")};
-  display: flex;
-  align-items: center;
-  justify-content: ${(props) => (props.elementsPage ? "center" : "flex-end")};
-  flex-flow: ${(props) => props.elementsPage && "row wrap"};
-  gap: 20px;
   padding-top: ${(props) => (props.elementsPage ? "10vh" : "0")};
+
+  .sub-container {
+    width: ${(props) => (props.elementsPage ? "100vw" : "min-content")};
+    height: ${(props) => (props.elementsPage ? "auto" : "10vh")};
+    min-height: ${(props) => (props.elementsPage ? "100vh" : "0")};
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 10px;
+    gap: 20px;
+  }
 `
 
 export const Type = styled.div`
   width: ${(props) =>
-    props.elementsPage || props.elementPage ? "250px" : "100px"};
+    props.elementPage ? "250px" : props.elementsPage ? "auto" : "100px"};
   height: ${(props) =>
     props.elementsPage || props.elementPage ? "80px" : "50px"};
   display: flex;
@@ -48,5 +53,10 @@ export const Type = styled.div`
     h2 {
       font-size: 15px;
     }
+  }
+
+  @media (max-width: 428px) {
+    width: ${(props) => props.elementsPage && "auto"};
+    height: ${(props) => props.elementsPage && "auto"};
   }
 `

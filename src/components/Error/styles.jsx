@@ -2,31 +2,38 @@ import styled from "styled-components"
 
 export const Container = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #fff;
+  background-color: #121212;
+  gap: 20px;
 
-  button {
-    width: 200px;
-    height: 50px;
-    border: none;
-    border-radius: 8px;
-    background-color: red;
-    color: #fff;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #ff6565;
-    }
+  img {
+    width: 300px;
   }
-`
 
-export const GoHome = styled.button`
-  color: #000;
-  &:hover {
-    color: red;
+  h1 {
+    color: #fff;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      width: 200px;
+      height: 50px;
+      border: none;
+      border-radius: 8px;
+      background-color: red;
+      color: #fff;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #ff6565;
+      }
+    }
   }
 `
