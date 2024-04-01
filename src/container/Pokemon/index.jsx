@@ -27,9 +27,9 @@ import {
 } from "./styles"
 
 const Pokemon = () => {
-  const [pokemon, setPokemon] = useState()
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
+  const [pokemon, setPokemon] = useState()
   const [evolutions, setEvolutions] = useState()
   const [pokemonsEvolutions, setPokemonsEvolutions] = useState([])
   const [pokemonsVarieties, setPokemonsVarieties] = useState([])
@@ -64,12 +64,10 @@ const Pokemon = () => {
     try {
       const fetchSpecies = async () => {
         const data = await getSpecies(pokemon.species.url)
-
         const dataEvolutions = await getEvolutions(
           data.data.evolution_chain.url,
         )
         setEvolutions(dataEvolutions)
-
         setIsLoading(true)
       }
       fetchSpecies()

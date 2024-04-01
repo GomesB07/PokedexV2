@@ -7,27 +7,27 @@ import { Container, DivButtons } from "./styles"
 
 const AllPokemons = () => {
   const [isLoading, setIsLoading] = useState(false)
+  const [isError, setIsError] = useState(false)
   const [pokemons, setPokemons] = useState([])
   const [pokemonNumber, setPokemonNumber] = useState()
   const [searchParams, setSearchParams] = useSearchParams()
-  const [isError, setIsError] = useState(false)
   const page = searchParams.get("page")
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
+    try {
+      const fetchData = async () => {
         const data = await getAllPokemonsUrl({
           limitPokemonPage: 51,
           pokemonNumber,
         })
         setPokemons(data)
         setIsLoading(true)
-      } catch (error) {
-        console.error(error)
-        setIsError(true)
       }
+      fetchData()
+    } catch (error) {
+      console.error(error)
+      setIsError(true)
     }
-    fetchData()
   }, [pokemonNumber])
 
   useEffect(() => {

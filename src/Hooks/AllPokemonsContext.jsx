@@ -10,8 +10,9 @@ const AllPokemonsProvider = ({ children }) => {
   useEffect(() => {
     try {
       const getPokemons = async () => {
+        const limitPokemonPage = 1302
         const data = await getAllPokemonsUrl({
-          limitPokemonPage: 10000,
+          limitPokemonPage,
           pokemonNumber: 0,
         })
 

@@ -26,6 +26,7 @@ export const FavoritesPokemons = styled.div`
   height: auto;
   min-height: 80vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 

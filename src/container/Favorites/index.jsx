@@ -6,10 +6,10 @@ import { FavoriteContext } from "../../Hooks/FavoriteContext"
 import { Container, FavoritesPokemons } from "./styles"
 
 const Favorites = () => {
-  const { getLocalStorage } = useContext(FavoriteContext)
-  const [pokemons, setPokemons] = useState()
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(false)
+  const { getLocalStorage } = useContext(FavoriteContext)
+  const [pokemons, setPokemons] = useState()
 
   useEffect(() => {
     try {
@@ -26,14 +26,16 @@ const Favorites = () => {
   }, [])
   return (
     <Container>
-      <div className="title">
-        <h1>Favorites</h1>
-      </div>
       <FavoritesPokemons>
         {error ? (
           <Error />
         ) : pokemons ? (
-          <CardPokemon pokemons={pokemons} isLoading={isLoading} />
+          <>
+            <div className="title">
+              <h1>Favorites</h1>
+            </div>
+            <CardPokemon pokemons={pokemons} isLoading={isLoading} />
+          </>
         ) : (
           <p>Sem Pokemons Favoritos!</p>
         )}
