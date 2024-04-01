@@ -24,6 +24,7 @@ const AllPokemons = () => {
         setIsLoading(true)
       }
       fetchData()
+      config
     } catch (error) {
       console.error(error)
       setIsError(true)
