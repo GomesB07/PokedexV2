@@ -23,7 +23,7 @@ const Search = () => {
         <input
           type="text"
           placeholder="Digite o nome do Pokemon..."
-          onChange={handleInput}
+          onInput={handleInput}
           disabled={allPokemons.length === 0}
         />
       </DivInput>
