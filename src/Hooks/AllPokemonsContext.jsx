@@ -18,9 +18,8 @@ const AllPokemonsProvider = ({ children }) => {
 
         setAllPokemons(data)
       }
-      setTimeout(() => {
-        getPokemons()
-      }, 1000)
+
+      getPokemons()
     } catch (error) {
       console.error(error)
     }
