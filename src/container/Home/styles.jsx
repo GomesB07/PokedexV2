@@ -3,8 +3,7 @@ import styled from "styled-components"
 export const Container = styled.div`
   font-family: "VT323", monospace;
   width: 100vw;
-  min-height: 90vh;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,9 +33,14 @@ export const Container = styled.div`
   button {
     width: 200px;
     height: 50px;
-    background-color: yellow;
-    border: 1px solid #fff;
+    border: none;
     border-radius: 8px;
     cursor: pointer;
+    background-color: red;
+    color: #fff;
+
+    &:hover {
+      background-color: #ff6565;
+    }
   }
 `

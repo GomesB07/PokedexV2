@@ -1,4 +1,28 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
+
+const showMenu = keyframes`
+  from {
+    opacity: 0;
+    width: 0;
+  }
+
+  to{
+    opacity: 1;
+    width: 90%;
+  }
+`
+
+const closeMenu = keyframes`
+  from{
+    opacity: 1;
+    width: 90%;
+  }
+
+  to{
+    opacity: 0;
+    width: 0%;
+  }
+`
 
 export const Container = styled.div`
   background: ${(props) => (props.pagePokemon ? props.color : "#121212")};
@@ -14,6 +38,8 @@ export const Container = styled.div`
 
   .logo {
     width: min-content;
+    cursor: pointer;
+    display: ${(props) => (props.openMenu ? "none" : "flex")};
     h1 {
       color: #fff;
     }
@@ -35,13 +61,16 @@ export const Container = styled.div`
 `
 
 export const Nav = styled.ul`
-  width: 50%;
   height: 100%;
   list-style: none;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 50px;
+
+  .link-active {
+    color: red;
+  }
 
   @media (max-width: 750px) {
     width: 100%;
@@ -53,6 +82,8 @@ export const Nav = styled.ul`
     position: fixed;
     background-color: #121212;
     padding: 50px 0;
+    animation: ${(props) => (props.openMenu ? showMenu : closeMenu)} 0.2s linear;
+    z-index: 10;
   }
 `
 
@@ -62,6 +93,10 @@ export const NavLink = styled.p`
   display: flex;
   animation: 0.5s linear;
   cursor: pointer;
+
+  &:hover {
+    color: #ff6565;
+  }
 
   @media (max-width: 750px) {
     font-size: 30px;

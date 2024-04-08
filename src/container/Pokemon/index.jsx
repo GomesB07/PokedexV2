@@ -118,7 +118,6 @@ const Pokemon = () => {
     try {
       const fetchVarieties = async (pokemon) => {
         const data = await getVarietiesPokemon(pokemon)
-
         setPokemonsVarieties(data)
       }
       fetchVarieties(pokemon)
@@ -126,6 +125,10 @@ const Pokemon = () => {
       console.log(error)
     }
   }, [pokemon, pokemonsEvolutions])
+
+  useEffect(() => {
+    setPokemonColor("#121212")
+  }, [isError])
 
   const fetchPokemonLocalStorage = (pokemon) => {
     addLocalStorage(pokemon)
