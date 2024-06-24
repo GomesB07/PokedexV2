@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# PokedexV2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PokedexV2 é um projeto com o objetivo de fixação de conhecimento, utilização de bibliotecas e api pública. Neste projeto é possível fazer busca por nome ou através do type do pokemon, além de favorita-los utilizando o localStorage e verificar seus status e evoluções.
 
-## Available Scripts
+## 📷 Imagens
 
-In the project directory, you can run:
+<div style="display: flex; justify-content: space-around;">
+  <img src="https://github.com/GomesB07/PokedexV2/blob/master/printScreens/Pokedexv2Mac.png?raw=true" width="600px" />
+  <img src="https://github.com/GomesB07/PokedexV2/blob/master/printScreens/PokedexV2iPhone.png?raw=true" width="200px" />
+  <img src="https://github.com/GomesB07/PokedexV2/blob/master/printScreens/PokedexV2Mac2.png?raw=true" width="600px" />
+</div>
 
-### `npm start`
+## 🔗[Clique aqui para Acessar o Projeto](https://pokedex-v2-liart.vercel.app/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Começando
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 
-### `npm test`
+## 🔧 Instalação
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para rodar na sua maquina será necessário somente clonar o repositório listado abaixo.
 
-### `npm run build`
+### Clone o repositório:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+  https://github.com](https://github.com/GomesB07/PokedexV2)
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Construído com
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Mencione as ferramentas que você usou para criar seu projeto
 
-### `npm run eject`
+* [React](https://react.dev/) - O framework web usado
+* [Yarn](https://yarnpkg.com/getting-started) - Gerenciamento de Pacotes
+* [Styled Components](https://styled-components.com/docs) - Framework CSS usado
+* [React Router Dom](https://reactrouter.com/en/main) - Serviço de Rotas
+* [Axios](https://axios-http.com/docs/intro) - Biblioteca para consumo de Apis
+* [Material UI](https://mui.com/material-ui/getting-started/) - Biblioteca de Componentes e Icons
+* [Eslint](https://eslint.org/docs/latest/) - Lint para padronização de código
+* [Prettier](https://prettier.io/docs/en/) - Formatador de Código
+* [Commitizen](https://github.com/commitizen/cz-cli) - Padronização de commit
+* [Husky](https://github.com/typicode/husky) - Padronização de commit
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## ✒️ Autores
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* **GomesB07** - *Desenvolvimento* - [GomesB07](https://github.com/GomesB07)
+---
+⌨️ com ❤️ por [GomesB07](https://github.com/GomesB07) 😊
