@@ -6,8 +6,8 @@ PokedexV2 é um projeto com o objetivo de fixação de conhecimento, utilizaçã
 
 <div style="display: flex; justify-content: space-around;">
   <img src="https://github.com/GomesB07/PokedexV2/blob/master/printScreens/Pokedexv2Mac.png?raw=true" width="600px" />
-  <img src="https://github.com/GomesB07/PokedexV2/blob/master/printScreens/PokedexV2iPhone.png?raw=true" width="200px" />
   <img src="https://github.com/GomesB07/PokedexV2/blob/master/printScreens/PokedexV2Mac2.png?raw=true" width="600px" />
+  <img src="https://github.com/GomesB07/PokedexV2/blob/master/printScreens/PokedexV2iPhone.png?raw=true" width="200px" />
 </div>
 
 ## 🔗[Clique aqui para Acessar o Projeto](https://pokedex-v2-liart.vercel.app/)
