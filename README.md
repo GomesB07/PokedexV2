@@ -23,7 +23,7 @@ Para rodar na sua maquina será necessário somente clonar o repositório listad
 ### Clone o repositório:
 
 ```
-  https://github.com](https://github.com/GomesB07/PokedexV2)
+  https://github.com/GomesB07/PokedexV2
 ```
 
 ## 🛠️ Construído com
